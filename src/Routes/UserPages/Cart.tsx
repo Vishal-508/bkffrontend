@@ -88,8 +88,8 @@ const Cart = () => {
     setTotalMRP(MRP);
     setSubtotalprice(price);
     
-    localStorage.setItem("totalMRP",String(MRP));
-    localStorage.setItem("subtotal",String(price));
+    // localStorage.setItem("totalMRP",String(MRP));
+    // localStorage.setItem("subtotal",String(price));
   }
   }
   useEffect(()=>{

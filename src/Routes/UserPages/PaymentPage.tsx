@@ -35,6 +35,14 @@ const PaymentPage = () => {
   const cartData: Icart_wishlistData[] = useSelector(
     (state: any) => state.AppReducer.cartData
   );
+  const [userName, setUserName] = useState("");
+  const [number, setNumber] = useState<any>(0);
+  const [pincode, setPincode] = useState<any>(0);
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [flate, setFlate] = useState("");
+  const [area, setArea] = useState("");
+  const [landmark, setLandmark] = useState("");
 
   const [totalMRP, setTotalMRP] = useState(0);
   const [subtotalprice, setSubtotalprice] = useState(0);
@@ -43,29 +51,44 @@ const PaymentPage = () => {
     var n = cartData.length;
     let MRP = 0;
     let price = 0;
-    for (var i = 0; i < n; i++) {
-      MRP += Number(cartData[i].mrp);
-      price += Number(cartData[i].price);
+    if(n!==0){
+      for(var i=0;i<n;i++){
+      MRP+=Number(cartData[i].mrp)
+      price+=Number(cartData[i].price)
     }
     setTotalMRP(MRP);
     setSubtotalprice(price);
+    
+    // localStorage.setItem("totalMRP",String(MRP));
+    // localStorage.setItem("subtotal",String(price));
+  }
   };
   useEffect(() => {
     const payload = {
       dispatch,
     };
-    getCartProduct(payload);
+    getCartProduct(payload).then((res)=>amounthandle());
     getAddressData(payload);
-    amounthandle();
+    
   }, []);
   const placed = () => {
     navigate("/OrderPlaced");
   };
+useEffect(()=>{
+  amounthandle()
+},[cartData.length])
+
+
+
+
   const handleDebitDetails = () => {
     
 
 
   };
+
+
+
   return (
     <Box p="35px 0 50px" textAlign={"left"}>
       <Flex w="55%" m="auto">
@@ -193,6 +216,7 @@ const PaymentPage = () => {
                         fontSize={"14px"}
                         _hover={{ background: "#42B2A2" }}
                         borderRadius="5px"
+                        mb="15px"
                         cursor={"pointer"}
                         // disabled=
                         value={`Pay ₹ ${subtotalprice} `}
@@ -210,6 +234,7 @@ const PaymentPage = () => {
                       color="white"
                       p="15px"
                       bg="#42A2A2"
+                      mb="15px"
                       fontSize={"14px"}
                       _hover={{ background: "#42B2A2" }}
                       borderRadius="5px"
