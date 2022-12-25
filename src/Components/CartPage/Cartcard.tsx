@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   border,
   Box,
@@ -24,7 +24,12 @@ import {
   postWishlistProduct,
 } from "../../Redux/AppReducer/action_creaters";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 const Cartcard = (props: Icart_wishlistData) => {
+
+  const cartData: Icart_wishlistData[] = useSelector(
+    (state: any) => state.AppReducer.cartData
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -49,8 +54,8 @@ const Cartcard = (props: Icart_wishlistData) => {
     userId,
   } = props;
 
-  // const [totalMRP,setTotalMRP]=useState(0);
-  // const [subtotalprice,setSubtotalprice]=useState(0);
+  // const [totalMRP,setTotalMRP]=useState<number>(0);
+  // const [subtotalprice,setSubtotalprice]=useState<number>(0);
   // const amounthandle=()=>{
   //   var n=cartData.length;
   //   let MRP=0;
@@ -62,9 +67,12 @@ const Cartcard = (props: Icart_wishlistData) => {
   //   setTotalMRP(MRP);
   //   setSubtotalprice(price);
     
+  //   localStorage.setItem("totalMRP",String(totalMRP));
+  //   localStorage.setItem("subtotal",String(price));
   // }
 
 
+// amounthandle()
   const handleDelete = () => {
     const payload = {
       _id: _id,
@@ -74,7 +82,7 @@ const Cartcard = (props: Icart_wishlistData) => {
       dispatch,
     };
   
-    DeleteCartProduct(payload).then((res) => getCartProduct(load));
+    DeleteCartProduct(payload).then((res) => getCartProduct(load))
   };
 
   const handleMove = () => {

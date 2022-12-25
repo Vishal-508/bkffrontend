@@ -67,32 +67,50 @@ const Cart = () => {
   const [area, setArea] = useState("");
   const [landmark, setLandmark] = useState("");
   const [count, setCount] = useState(0);
-  const [totalMRP, setTotalMRP] = useState(0);
-  const [subtotalprice, setSubtotalprice] = useState(0);
-  const amounthandle = () => {
-    var n = cartData.length;
-    let MRP = 0;
-    let price = 0;
-    for (var i = 0; i < n; i++) {
-      MRP += Number(cartData[i].mrp);
-      price += Number(cartData[i].price);
+  // const [totalMRP, setTotalMRP] = useState(0);
+  // const [subtotalprice, setSubtotalprice] = useState(0);
+  interface IamountProp{
+    totalMRP:number,
+    subtotalPrice:number
+  }
+
+  const [totalMRP,setTotalMRP]=useState<number>(0);
+  const [subtotalprice,setSubtotalprice]=useState<number>(0);
+  const amounthandle=()=>{
+    var n=cartData.length;
+    let MRP=0;
+    let price=0;
+    if(n!==0){
+      for(var i=0;i<n;i++){
+      MRP+=Number(cartData[i].mrp)
+      price+=Number(cartData[i].price)
     }
     setTotalMRP(MRP);
     setSubtotalprice(price);
-  };
+    
+    localStorage.setItem("totalMRP",String(totalMRP));
+    localStorage.setItem("subtotal",String(price));
+  }
+  }
+  useEffect(()=>{
+amounthandle()
+  },[cartData.length])
+  // const amountObj:IamountProp=JSON.parse(localStorage.getItem("amountSummary"));
+  // var totalMRP=localStorage.getItem("totalMRP");
+  // var subtotalprice=localStorage.getItem("subtotalPrice");
+  
   var discount = totalMRP - subtotalprice;
-
   useEffect(() => {
     const payload = {
       dispatch,
     };
-    getCartProduct(payload);
+    getCartProduct(payload).then((res)=>amounthandle());
     getAddressData(payload)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-    if (cartData.length > 0) {
-      amounthandle();
-    }
+    // if (cartData.length > 0) {
+    //   amounthandle();
+    // }
   }, []);
   const addressData: IaddressData[] = useSelector(
     (state: any) => state.AppReducer.addressData
