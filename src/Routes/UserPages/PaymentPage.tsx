@@ -35,14 +35,11 @@ const PaymentPage = () => {
   const cartData: Icart_wishlistData[] = useSelector(
     (state: any) => state.AppReducer.cartData
   );
+  const [cardNumber, setCardNumber] = useState("");
+  const [vaildity, setVaildity] = useState("");
+  const [cvv, setCvv] = useState("");
   const [userName, setUserName] = useState("");
-  const [number, setNumber] = useState<any>(0);
-  const [pincode, setPincode] = useState<any>(0);
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [flate, setFlate] = useState("");
-  const [area, setArea] = useState("");
-  const [landmark, setLandmark] = useState("");
+
 
   const [totalMRP, setTotalMRP] = useState(0);
   const [subtotalprice, setSubtotalprice] = useState(0);
@@ -81,8 +78,9 @@ useEffect(()=>{
 
 
 
-  const handleDebitDetails = () => {
-    
+  const handleDebitDetails: React.FormEventHandler<HTMLFormElement>  = (e) => {
+    e.preventDefault();
+    navigate("/OrderPlaced");
 
 
   };
@@ -163,24 +161,36 @@ useEffect(()=>{
                     <form onSubmit={handleDebitDetails}>
                       <Input
                         mb="18px"
-                        required={true}
+                        value={cardNumber}
+                        onChange={(e) =>
+                          setCardNumber(e.target.value)
+                        }
+                        isRequired
                         variant="flushed"
                         placeholder="Card Number"
-                        maxLength={16}
                         type="number"
+                        maxLength={16}
                       />
                       <Flex justify="space-between" mb="18px">
                         <Input
-                          required={true}
+                            isRequired
                           w="50%"
+                          value={vaildity}
+                        onChange={(e) =>
+                          setVaildity(e.target.value)
+                        }
                           variant="flushed"
                           placeholder="Valid Through(MM/YY)"
                           maxLength={5}
                           type="number"
                         />
                         <Input
-                          required={true}
+                            isRequired
                           w="30%"
+                          value={cvv}
+                        onChange={(e) =>
+                          setCvv(e.target.value)
+                        }
                           variant="flushed"
                           placeholder="CVV"
                           maxLength={3}
@@ -188,11 +198,15 @@ useEffect(()=>{
                         />
                       </Flex>
                       <Input
-                        required={true}
+                         isRequired
                         mb="18px"
                         variant="flushed"
+                        value={userName}
+                        onChange={(e) =>
+                          setUserName(e.target.value)
+                        }
                         placeholder="Name On Card"
-
+                            type={"text"}
                       />
                       <Checkbox
                         m="20px 0 0"
@@ -207,7 +221,7 @@ useEffect(()=>{
                         This transaction you make is totally secure. We don't
                         save your CVV number.
                       </Box>
-                      <Input
+                      <Button
                         w="100%"
                         color="white"
                         p="15px"
@@ -218,9 +232,10 @@ useEffect(()=>{
                         borderRadius="5px"
                         mb="15px"
                         cursor={"pointer"}
+                        type="submit"
                         // disabled=
-                        value={`Pay ₹ ${subtotalprice} `}
-                      />
+                        // value={`Pay ₹ ${subtotalprice} `}
+                      >{`Pay ₹ ${subtotalprice} `}</Button>
                     </form>
                   </Box>
                 </TabPanel>
