@@ -126,7 +126,7 @@ useEffect(() => {
     setSearchParams(params);
 
   }
-  console.log("95 line no. use effect is runed")
+  console.log("95 line no. use effect is run")
 }, [sort, category,setSearchParams]);
 
 
@@ -144,7 +144,7 @@ useEffect(()=>{
     dispatch
   };
  
-  getAllProducts(payload).then((res)=>console.log("113 line no. use effect is runed"));
+  getAllProducts(payload).then((res)=>console.log("113 line no. use effect is run"));
   
 },[location.search,sort])
 
