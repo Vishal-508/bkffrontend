@@ -88,12 +88,16 @@ const Cart = () => {
     setTotalMRP(MRP);
     setSubtotalprice(price);
     
-    localStorage.setItem("totalMRP",String(totalMRP));
+    localStorage.setItem("totalMRP",String(MRP));
     localStorage.setItem("subtotal",String(price));
   }
   }
   useEffect(()=>{
-amounthandle()
+    const payload = {
+      dispatch,
+    };
+    getCartProduct(payload).then((res)=>amounthandle())
+// amounthandle()
   },[cartData.length])
   // const amountObj:IamountProp=JSON.parse(localStorage.getItem("amountSummary"));
   // var totalMRP=localStorage.getItem("totalMRP");

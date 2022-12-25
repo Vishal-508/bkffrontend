@@ -54,22 +54,21 @@ const Cartcard = (props: Icart_wishlistData) => {
     userId,
   } = props;
 
-  // const [totalMRP,setTotalMRP]=useState<number>(0);
-  // const [subtotalprice,setSubtotalprice]=useState<number>(0);
   // const amounthandle=()=>{
   //   var n=cartData.length;
   //   let MRP=0;
   //   let price=0;
-  //   for(var i=0;i<n;i++){
-  //     MRP+=Number(cartData[i].mrp);
-  //     price+=Number(cartData[i].price);
+  //   if(n!==0){
+  //     for(var i=0;i<n;i++){
+  //     MRP+=Number(cartData[i].mrp)
+  //     price+=Number(cartData[i].price)
   //   }
-  //   setTotalMRP(MRP);
-  //   setSubtotalprice(price);
     
-  //   localStorage.setItem("totalMRP",String(totalMRP));
+  //   localStorage.setItem("totalMRP",String(MRP));
   //   localStorage.setItem("subtotal",String(price));
   // }
+  // }
+ 
 
 
 // amounthandle()
@@ -83,6 +82,7 @@ const Cartcard = (props: Icart_wishlistData) => {
     };
   
     DeleteCartProduct(payload).then((res) => getCartProduct(load))
+    // .then((res)=>amounthandle())
   };
 
   const handleMove = () => {
@@ -118,6 +118,7 @@ const Cartcard = (props: Icart_wishlistData) => {
       };
    
     postWishlistProduct(payload).then((res)=>DeleteCartProduct(load)).then((res) => getCartProduct(oad))
+    // .then((res)=>amounthandle())
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
