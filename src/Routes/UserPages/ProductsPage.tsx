@@ -144,13 +144,30 @@ useEffect(()=>{
     dispatch
   };
  
-  getAllProducts(payload).then((res)=>console.log("113 line no. use effect is run"));
+  getAllProducts(payload).then((res)=>console.log("147line no. use effect is run"));
   
 },[location.search,sort])
 
 
 
 
+useEffect(()=>{
+  var payload = {
+    params:{
+
+      limit: 40,
+      category: category,
+      gender: gender ,
+      page: 1,
+      sort: sort
+    },
+  
+    dispatch
+  };
+ 
+  getAllProducts(payload).then((res)=>console.log("168 line no. use effect is run"));
+  
+},[])
   
 
 

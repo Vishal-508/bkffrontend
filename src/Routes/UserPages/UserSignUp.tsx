@@ -23,13 +23,13 @@ const UserSignUp = () => {
 
   var initstate={
     name:"",
-    number:0,
+    number:"",
     email:"",
     password:""
   }
 interface Iinitstate{
   name:string,
-  number:number,
+  number:any,
   email:string,
   password:string
 }
@@ -133,6 +133,7 @@ interface Iinitstate{
                 type="text"
                 onChange={handleForm}
                 name="name"
+                maxLength={25}
                 value={formData.name}
                 placeholder="Enter Your Full Name"
               />
@@ -141,7 +142,8 @@ interface Iinitstate{
                 focusBorderColor="#fff4c4"
                 h="60px"
                 w="522px"
-                type="text"
+                maxLength={10}
+                type="number"
                 onChange={handleForm}
                 name="number"
                 value={formData.number}
@@ -169,6 +171,7 @@ interface Iinitstate{
                 type="password"
                 onChange={handleForm}
                 name="password"
+                maxLength={25}
                 value={formData.password}
                 placeholder="Enter Your Password"
               />
