@@ -1,4 +1,5 @@
 import React from 'react'
+import { extendTheme } from '@chakra-ui/react'
 import {
     Box,
     SimpleGrid,
@@ -7,20 +8,35 @@ import {
     ListItem,
   } from "@chakra-ui/react";
 const Footer = () => {
+  const breakpoints = {
+    sm: '320px',
+    md: '768px',
+    lg: '960px',
+    xl: '1200px',
+    '2xl': '1536px',
+  }
+  const theme = extendTheme({ breakpoints })
+  
+
     return (
-        <div style={{ background: "#181818" }}>
-          <Box w="1140px" m="auto">
-            <Box w="1140px" m="auto" mt="50px">
+        <div style={{ background: "#181818", border:"1px solid white" }} >
+          <Box w="1140px" m="auto" border={"1px solid yellow"} >
+            <Box w="1140px" m="auto" mt="50px" border={"1px solid skyblue"} >
               <Image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG4AAACKCAMAAAB8UI9dAAAAkFBMVEUYGBgAABYAABj/3Df/3zfBqC4VFhgAABTbvzH/4Tf/2jYOEBcRExgAABvy0DPixTGDciX/5Tf41ja4oiyWgidPRh2rlinszjR1ZSSKeSQJChdZTx8SFR2lkSnQtS1fVB8gHRooJh1RRSM8OB5tXiJDPhyzmSkvKh5KRiEUEBpNSRoxLBsACRv/7TmejCshHB3oKesZAAADYUlEQVRoge2V25aiOhCGSaogBw6BIEbjCNrYtD06zPu/3RT2WtNzod3u273qu2BpUslP/lQVScIwDMMwDMMwDMMwDMMwDMMwDMMw/40szx5NCfWBiM9sRIEPd1p0lt2SmO1+5A/W7/WNfj3I79Viq9PDY73iOPd6I17afTve11MpWjTGAMJWfCsnNLov5IQ22KzkXE91q+5HpGDTaWod2KpMFtvv+17cxoWGT7ks/g3NY7E8B4T+9Cr39TRM970SqW12Qqiysv4tK0TszqUolFC0XghJ+0klfggxdud3lX/IRSVEkau4e4lLGMW9/rzQkNgAnlSZjdOcvt33YJEbVB7LYP01T1LTNLgXzjQqKzU2x0JMza+32TdEf1GLnOjQVOOlpxGTHvJErpbZsFEWrcVmiIX6/SihyEzcDsOwtnR3uTNWazTTCs1JXII1tTw40CsD/ZoC9SKnfnq6wEsA0BogZHIyGHpP2/TOeud2lCSP64DujqBMSXO5R38SagaoEdZqRzOtOAOsgtelktqGqwa9CxCOokXYxLgF3L9Y6BM5OvBXMrOOXxXKTc4RlQUtAvRv4/jicd2jFivToxO1Md04Ht8v58qGnE4XwGfXY6DwrIj0f0Y7qEzVBjaL3NfpTXdnBillsZi6eI8IgP2MUPRIy5MUvCjr1HljF7mbFSfReWzF7WV9CtVYJJGycvWUXHOihqJOxqYW3NQuzK/G1MEfe1M7nBSVk5tqfZMDV4GXZ3JALVX7V24Hz8oNlNhyi9iSmXRQNb5eZAXOO7VC2vy0M7inEA2LmSFuDaZlALeY6RYz6bQJmY7PmYn77Xa79pSGtLKOZQ1mIyYAWIsd2VuVJ8BZqdFCeKe7SqIm/9cGt9d8BjPTuL6ojgpJPiMHtyaGYPprdAaCs016jUNjSVR4i6n8jeD71ANUh6WJic7Y0Dm0IQA6qWbEynl6U7UB842cbH11o9/GIj+2tKlfF0UifRVe31Xq/SaKTUXps9770PVeHzJa49cH0re+pTIXdaBf7iTixvv6fq/81PuA+hgVTCGKrktuLYGG8tvslSwoX7pMCVm+C0l9LaOnKGTWnePS5egbNnYXQTpRyqc+Y588aNHFndF/Qu9NMwzDMAzDMAzDMAzDMAzDMAzDMP9n/gDjwj0q5G65HwAAAABJRU5ErkJggg==" />
             </Box>
             <SimpleGrid
-              columns={4}
+            border={"2px solid grey"}
+              columns={{xl:4, lg:4, md:2, sm:2}}
+              row={{xl:0, lg:2, md:2, sm:2}}
               w="1140px"
               m="auto"
               fontSize="12px"
               color="#FFFFFFE6"
+
             >
-              <Box fontSize="12px" color="#FFFFFFE6" w="285px" height="128px">
+              <Box fontSize="12px" color="#FFFFFFE6"
+              // w="285px" 
+              height="128px">
                 <UnorderedList
                   textAlign="left"
                   listStyleType="none"
@@ -40,7 +56,9 @@ const Footer = () => {
                   <ListItem>Cancel Order</ListItem>
                 </UnorderedList>
               </Box>
-              <Box w="285px" height="128px">
+              <Box 
+              // w="285px" 
+              height="128px">
                 <UnorderedList
                   textAlign="left"
                   listStyleType="none"
@@ -61,7 +79,9 @@ const Footer = () => {
                   <ListItem>Blog</ListItem>
                 </UnorderedList>
               </Box>
-              <Box w="285px" height="128px" textAlign="left">
+              <Box 
+              // w="285px"
+               height="128px" textAlign="left">
                 <Box
                   color="#FDD835"
                   letterSpacing="1px"
@@ -75,7 +95,9 @@ const Footer = () => {
                   <Box><Box as="span">1M Followers</Box></Box>
                 </Box>
               </Box>
-              <Box w="285px" height="128px">
+              <Box
+              //  w="285px"
+                height="128px">
                 <UnorderedList
                   textAlign="left"
                   listStyleType="none"
@@ -108,13 +130,16 @@ const Footer = () => {
             </SimpleGrid>
             <br />
             <br />
-            <SimpleGrid  columns={4}
+            <SimpleGrid border={"2px solid orange"} columns={{xl:4, lg:4, md:2, sm:2}}
+              row={{xl:0, lg:2, md:2, sm:2}}
               w="1140px"
               m="auto"
               fontSize="12px"
               color="#FFFFFFE6" >
               
-            <Box fontSize="12px" color="#FFFFFFE6" w="285px" height="128px">
+            <Box fontSize="12px" color="#FFFFFFE6" 
+            // w="285px"
+             height="128px">
                 <UnorderedList
                   textAlign="left"
                   listStyleType="none"
@@ -127,7 +152,9 @@ const Footer = () => {
                   
                 </UnorderedList>
               </Box>
-              <Box w="285px" height="128px">
+              <Box
+              //  w="285px" 
+               height="128px">
                 <UnorderedList
                   textAlign="left"
                   listStyleType="none"
@@ -151,7 +178,9 @@ const Footer = () => {
                   
                 </UnorderedList>
               </Box>
-              <Box w="285px" height="128px">
+              <Box
+              //  w="285px"
+                height="128px">
                 <UnorderedList
                   textAlign="left"
                   listStyleType="none"
