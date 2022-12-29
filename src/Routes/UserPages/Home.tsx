@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
     <HomeElements/>
-    <Footer/>
+    {/* <Footer/> */}
     {/* <DemoCarousel/> */}
     </>
   )
