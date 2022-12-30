@@ -99,15 +99,15 @@ const Navbar = () => {
     navigate("/")
     window.location.reload();
   }
-  const breakpoints = {
-    sm: '320px',
-    md: '768px',
-    lg: '960px',
-    xl: '1200px',
-    '2xl': '1536px',
-  }
+  // const breakpoints = {
+  //   sm: '320px',
+  //   md: '768px',
+  //   lg: '960px',
+  //   xl: '1200px',
+  //   '2xl': '1536px',
+  // }
 
-  const theme = extendTheme({ breakpoints })
+  // const theme = extendTheme({ breakpoints })
   return (
     <>
       <Box bg={"white"} display={{ base: "none", sm: "none", md: "none", lg: "unset" }} >
@@ -256,11 +256,11 @@ const Navbar = () => {
                         <Image w="23px" src={loginIcon} />
                       </MenuButton>
                       <MenuList>
-                        <MenuItem bg="#E2E8F0" >Hi, <Box as="em"> &nbsp; {username}</Box></MenuItem>
-                        <MenuItem>My Orders</MenuItem>
-                        <MenuItem>Wishlist</MenuItem>
-                        <MenuItem>My Profile</MenuItem>
-                        <MenuItem onClick={handleLogOut} >Log Out</MenuItem>
+                        <MenuItem bg="#E2E8F0" borderBottom={"1.5px solid white"} >Hi, <Box as="em"> &nbsp; {username}</Box></MenuItem>
+                        {/* <MenuItem>My Orders</MenuItem> */}
+                        {/* <MenuItem>Wishlist</MenuItem> */}
+                        {/* <MenuItem>My Profile</MenuItem> */}
+                        <MenuItem _hover={{  cursor: "pointer", background: "#E2E8F0" }} onClick={handleLogOut} >Log Out</MenuItem>
                       </MenuList>
                     </Menu>
                   ) : (
@@ -303,51 +303,56 @@ const Navbar = () => {
           </Flex>
         </Box>
       </Box>
-      <Box bg={"white"} p="10px 0" boxShadow="rgba(33, 35, 38, 0.1) 0px 10px 10px -10px"  display={{ lg: "none" }} >
+      <Box bg={"white"} p="10px 0" boxShadow="rgba(33, 35, 38, 0.1) 0px 10px 10px -10px" display={{ lg: "none" }} >
         <Flex justify={"space-between"} align="center" >
 
-        
-        <Box display={"flex"}  alignItems={"center"} >
-          <Box   >
-            <Button _hover={{background:"none"}} ref={btnRef} bg="none" onClick={onOpen}>
-              <Image  src="https://images.bewakoof.com/web/ic-web-head-hamburger.svg" />
 
-            </Button>
-            <Drawer
-              isOpen={isOpen}
-              placement='left'
-              onClose={onClose}
-              finalFocusRef={btnRef}
-            >
-              <DrawerOverlay />
-              <DrawerContent>
-                <DrawerCloseButton />
-                <DrawerHeader>Create your account</DrawerHeader>
+          <Box display={"flex"} alignItems={"center"} >
+            <Box   >
+              <Button _hover={{ background: "none" }} ref={btnRef} bg="none" onClick={onOpen}>
+                <Image src="https://images.bewakoof.com/web/ic-web-head-hamburger.svg" />
 
-                <DrawerBody>
-                  <Input placeholder='Type here...' />
-                </DrawerBody>
+              </Button>
+              <Drawer
+                isOpen={isOpen}
+                placement='left'
+                onClose={onClose}
+                finalFocusRef={btnRef}
+              >
+                <DrawerOverlay />
+                <DrawerContent>
+                  <DrawerCloseButton />
+                  <DrawerHeader><Image w="70%" src="https://images.bewakoof.com/web/ic-desktop-normal-bwkf-logo-christmas-v1.svg" alt="" /></DrawerHeader>
 
-                <DrawerFooter>
-                  <Button variant='outline' mr={3} onClick={onClose}>
-                    Cancel
-                  </Button>
-                  <Button colorScheme='blue'>Save</Button>
-                </DrawerFooter>
-              </DrawerContent>
-            </Drawer>
+                  <DrawerBody>
+                    {token ? <Box bg="#E2E8F0" fontWeight={"bold"} p="10px" >Hi, &nbsp; <Box as="em" >{username}</Box> </Box> : <Link to="/UserLogin" >
+                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} p="10px" fontWeight="bold" bg={"#eaeaea"} >Login/SignUp</Box></Link>}
+
+
+                    <Box lineHeight={"2.5"} p="10px" color={"#E2E8F0"} fontWeight="bold" >
+                      SHOP IN
+                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} color={"black"} onClick={() => handleClick("Men")} fontWeight="bold" >Mens</Box>
+                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} onClick={() => handleClick("Women")} color={"black"} fontWeight="bold" >Womens</Box>
+                    </Box>
+                  </DrawerBody>
+
+                  <DrawerFooter fontWeight="bold" display={token ? "unset" : "none"} >
+                    <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} p="10px" onClick={handleLogOut} >Logout</Box>
+                  </DrawerFooter>
+                </DrawerContent>
+              </Drawer>
+            </Box>
+            <Image w={"50px"} src="https://images.bewakoof.com/web/ic-web-head-bwk-primary-logo-eyes-christmas.svg" />
           </Box>
-          <Image  w={"50px"} src="https://images.bewakoof.com/web/ic-web-head-bwk-primary-logo-eyes-christmas.svg" />
-        </Box>
-        <Flex m={"0 15px"} justify="center" align={"center"} > 
-          <Box  >
-          <Image m={"0 10px"} src="https://images.bewakoof.com/web/ic-web-head-search.svg" />
-            
-         </Box> 
-          <Link  style={{margin:"0 6px 0 0"}} to={"/WishlistPage"} ><Image src="https://images.bewakoof.com/web/ic-web-head-wishlist.svg" /></Link> 
-          <Link style={{margin:"0 6px"}} to={"/CartPage"} ><Image src="https://images.bewakoof.com/web/ic-web-head-cart.svg" /></Link>
-        </Flex>
+          <Flex m={"0 15px"} justify="center" align={"center"} >
+            <Box  >
+              <Image m={"0 10px"} src="https://images.bewakoof.com/web/ic-web-head-search.svg" />
+
+            </Box>
+            <Link style={{ margin: "0 6px 0 0" }} to={"/WishlistPage"} ><Image src="https://images.bewakoof.com/web/ic-web-head-wishlist.svg" /></Link>
+            <Link style={{ margin: "0 6px" }} to={"/CartPage"} ><Image src="https://images.bewakoof.com/web/ic-web-head-cart.svg" /></Link>
           </Flex>
+        </Flex>
       </Box>
     </>
   );
