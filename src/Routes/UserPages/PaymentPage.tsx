@@ -89,19 +89,25 @@ useEffect(()=>{
 
   return (
     <Box p="35px 0 50px" textAlign={"left"}  >
-      <Flex w="55%" m="auto">
-        <Box w="60%" borderRight={"1px solid #b5b5b5"}>
+      <Flex w={{lg:"68%", md:"80%",sm:"90%"}} m="auto"  wrap={{lg:"nowrap",md:"wrap",sm:"wrap",base:"wrap"}} >
+        <Box
+        //  w="60%"
+        // w={"50%"}
+         borderRight={{lg:"1px solid #b5b5b5", md:"none",sm:"none", base:"none"}}>
           <Box
             fontSize={"16px"}
             color="#333333"
-            m="0 0 16px"
+            // m="0 0 16px"
+            m="0 0 16px 12px"
             fontWeight={"bold"}
             textAlign="left"
             as="p"
           >
             Choose your payment method
           </Box>
-          <Box border={"1px solid #b5b5b5"} h="90%" m="0 12px 0 0">
+          <Box border={"1px solid #b5b5b5"} h="90%" 
+          m="12px"
+          >
             <Tabs display={"flex"} w="100%" h={"100%"}>
               <TabList
                 w="45%"
@@ -136,7 +142,7 @@ useEffect(()=>{
               <TabPanels w="55%">
                 <TabPanel p="0 15px">
                   <Box>
-                    <Flex align={"center"} p="0">
+                    <Flex align={"center"} wrap="wrap" p="0">
                       <Image
                         w="43px"
                         m="20px 0"
@@ -264,7 +270,13 @@ useEffect(()=>{
             </Tabs>
           </Box>
         </Box>
-        <Box w="40%" pl="20px">
+        <Box
+        flexShrink={-2}
+        //  w="40%" 
+        // w="50%"
+        w={{md:"90%",sm:"95%",base:"98%",lg:"50%"}}
+         p="0 12px 12px"
+         >
           {" "}
           <Link to="/AddressPage">
             <Box textAlign={"left"}>
