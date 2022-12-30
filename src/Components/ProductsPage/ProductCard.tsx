@@ -43,7 +43,9 @@ const ProductCard = (props:IproductData) => {
     return (
         <Box  >
           {/* <Link to={`/SingleProductPage/${}`}> */}
-            <Box cursor="pointer" onClick={handlePage} w="282.48px" h="450.84px" key={id} textAlign="left" >
+            <Box cursor="pointer" onClick={handlePage} 
+            // w="282.48px" h="450.84px"
+             key={id} textAlign="left" >
               <Image
                 src={`https://images.bewakoof.com/t640/${display_image}`}
                 alt={name}

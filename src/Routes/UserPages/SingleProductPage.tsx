@@ -149,14 +149,15 @@ if(size.length===0){
   }
 
   return (
-    <div>
+    <>
+    <Box  w={{lg:"69%", md:"90%"}} m="auto"  >
       {/* <div>SingleProduct</div> */}
       {/* <Navbar /> */}
-      <Box>
+      <Box >
         <Breadcrumb
           fontSize="12px"
           // w="1170px"
-          w="61.5%"
+          // w="61.5%"
           p="10px 10px"
           m=" 10px auto"
           textAlign="left"
@@ -172,40 +173,63 @@ if(size.length===0){
           </BreadcrumbItem>
         </Breadcrumb>
       </Box>
-      <Flex w="1170px" m="auto">
-        <Box display="flex" w="570px" h="588px">
+      <Flex
+      justifyContent="center"
+       wrap={{sm:"wrap", base:"wrap", md:"nowrap"}}
+      //  w="1170px" 
+      // w="40%"
+      >
+        <Box display="flex"
+        // border={"1px solid black"}
+        w={{lg:"50%",md:"60%", sm:"80%", base:"90%"}}
+        mr="15px"
+        // w="50%"
+        //  w="570px" h="588px"
+         >
           <Box w="80px" mr="10px">
-            {/* <Image src={`https://images.bewakoof.com/t1080/${display_image}`} */}
-            {/* /> */}
+            <Image src={`https://images.bewakoof.com/t1080/${sdata.display_image}`}
+            />
           </Box>
           {/* https://images.bewakoof.com/t640/${display_image} */}
-          <Box>
+          <Box 
+          // w={"470px"} 
+          >
             <Image
-              w="450px"
+              
               src={`https://images.bewakoof.com/t1080/${sdata.display_image}`}
-              // src={`https://images.bewakoof.com/t1080/men-s-black-nagato-graphic-printed-oversized-t-shirt-563596-1671460704-1.jpg`}
+             
             />
           </Box>
         </Box>
-        <Box w="527px" h="588px">
+        <Box 
+        //  border={"1px solid blue"}
+        // w="527px" h="588px"
+        m="10px"
+        >
           <Box
+          // border={"1px solid black"}
             fontSize="18px"
             p="8px 0"
-            w="470px"
+            // w="470px"
+
             textAlign="left"
-            m="auto"
+            
             fontWeight="semibold"
           >
             {sdata.manufacturer_brand}
             {/* manufacturer_brand */}
           </Box>
-          <Text p="8px 0" w="470px" textAlign="left" m="auto">
+          <Text p="8px 0" 
+          // w="470px"
+           textAlign="left" m="auto">
             {sdata.name}
             {/* Women's Red Slim Fit T-shirt */}
             {/* {name} */}
           </Text>
           <Box>
-            <Flex fontSize="14px" align="center" w="470px" m="auto">
+            <Flex fontSize="14px" align="center" 
+            // w="470px"
+             m="auto">
               <Box fontWeight="bold" fontSize="24px">
                 {" "}
                 <Box as="span" fontSize="16px">
@@ -224,14 +248,18 @@ if(size.length===0){
                 {/* {product_discount} */}
               </Box>
             </Flex>
-            <Flex w="470px" m="0 auto 20px auto">
+            <Flex 
+            // w="470px"
+             m="0 auto 20px auto">
               <Text fontSize="11px" fontWeight="bold" p="3px 8px" bg="#F7F7F7">
                 ₹{sdata.member_price} for TriBe Members
                 {/* {singlePageData.tribe_text} */}
                 {/* ₹319  For TriBe Members */}
               </Text>
             </Flex>
-            <Box m="auto" w="470px" h="3px" bg="#EEEEEE"></Box>
+            <Box m="auto"
+            //  w="470px" 
+             h="3px" bg="#EEEEEE"></Box>
             <Box fontSize="12px" p="16px 0"  >
               <Text mr="72px">
                 TriBe members get an extra discount of{" "}
@@ -245,9 +273,13 @@ if(size.length===0){
               </Text>
             </Box>
           </Box>
-          <Box m="auto" w="470px" h="3px" bg="#EEEEEE"></Box>
+          <Box m="auto"
+          //  w="470px"
+            h="3px" bg="#EEEEEE"></Box>
           <Box>
-            <Flex w="470px" m="15px auto" justifyContent="space-between">
+            <Flex
+            //  w="470px"
+              m="15px auto" justifyContent="space-between">
               <Box fontSize="12px" fontWeight="bold" as="span">
                 SELECT SIZE
               </Box>
@@ -256,7 +288,10 @@ if(size.length===0){
                 Size Guide
               </Box>
             </Flex>
-            <Flex w="470px" m="auto">
+            <Flex
+            //  w="470px"
+            wrap={"wrap"}
+              m="auto">
               {sdata.product_sizes?.map((ele) => (
                 <Center
                   w="46px"
@@ -281,7 +316,7 @@ if(size.length===0){
           </Box>
           <Box>
             <Box
-              w="470px"
+              // w="470px"
               m="0 auto -15px"
               fontSize="14px"
               textAlign="left"
@@ -290,13 +325,16 @@ if(size.length===0){
             >
               Few Left
             </Box>
-            <Box w="470px" m="20px auto">
+            <Box
+            //  w="470px"
+              m="20px auto">
               <HStack>
                 <Button
                   //  onClick={handleItem }
                   onClick={handleAddCart}
                   h="40px"
-                  w="248px"
+                  // w="248px"
+                  w="40%"
                   borderRadius="5px"
                   bg="#FFD84D"
                   fontSize="14px"
@@ -310,7 +348,8 @@ if(size.length===0){
                   borderRadius="5px"
                   border="1px solid #949494"
                   color="#949494"
-                  w="195px"
+                  // w="195px"
+                  w="35%"
                   bg="#ffffff"
                   fontSize="14px"
                   onClick={handleMove}
@@ -321,11 +360,14 @@ if(size.length===0){
               </HStack>
             </Box>
           </Box>
-          <Box m="auto" w="470px" h="3px" bg="#EEEEEE"></Box>
+          <Box m="auto"
+          //  w="470px" 
+           h="3px" bg="#EEEEEE"></Box>
         </Box>
       </Flex>
+    </Box>
       <Footer/>
-    </div>
+    </>
   );
 };
 

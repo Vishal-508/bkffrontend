@@ -88,7 +88,7 @@ useEffect(()=>{
 
 
   return (
-    <Box p="35px 0 50px" textAlign={"left"}>
+    <Box p="35px 0 50px" textAlign={"left"}  >
       <Flex w="55%" m="auto">
         <Box w="60%" borderRight={"1px solid #b5b5b5"}>
           <Box
