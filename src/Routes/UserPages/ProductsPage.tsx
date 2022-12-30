@@ -202,16 +202,17 @@ useEffect(()=>{
 
 
   return (
-    <div>
+    <Box m="auto" w={{base:"90%", sm:"90%", md:"80%", lg:"67%"}}  > 
       {/* <Box  > */}
-      <Box position="sticky" top="0">
-        {/* <Navbar /> */}
-      </Box>
-      <Box>
+      {/* <Box position="sticky" top="0">
+        <Navbar />
+      </Box> */}
+      <Box  >
         <Breadcrumb
           fontSize="12px"
-          w="1170px"
-          p="10px 10px"
+          // w="1170px"
+          
+          p="10px 0"
           m="auto"
           textAlign="left"
         >
@@ -226,7 +227,9 @@ useEffect(()=>{
       </Box>
       <Box></Box>
       <Box
-        w="1170px"
+      // border={"1px solid orange"}
+        // w="1170px"
+        // w="63%"
         m="auto"
         mt="45px"
         mb="50px"
@@ -239,10 +242,19 @@ useEffect(()=>{
         <Box as="span" fontWeight="normal" color="#949494">
           {/* ({data.total_product_count}) */}
         </Box>
-        <Box w="117px" h="2px" bg="#FBD139" ml="1px" mt="6px"></Box>
+        <Box
+         w="117px" h="2px" bg="#FBD139" ml="1px" mt="6px"></Box>
       </Box>
-      <Box w="1170px" h="auto" m="auto" display="flex">
-        <Box w="295.5px" h="auto">
+
+      <Box
+      // border={"1px solid red"}
+      //  w="1170px" 
+      // w="63%"
+        h="auto" m="auto" display="flex">
+        <Box
+        display={{base:"none", sm:"none", md:"none", lg:"unset"}}
+         w="300px"
+          h="auto">
           <Flex color="#333333" direction="column" position="sticky" top="52px">
             <Box
               color="#2D2D2D80"
@@ -254,7 +266,7 @@ useEffect(()=>{
               FILTERS
             </Box>
             <Accordion allowToggle mr="10px">
-              <AccordionItem w="94%">
+              <AccordionItem w="200px">
                 <h2>
                   <AccordionButton p="8px 0px 8px 0px">
                     <Box as="span" fontSize="14px" flex="1" textAlign="left">
@@ -288,7 +300,7 @@ useEffect(()=>{
                 </AccordionPanel>
               </AccordionItem>
 
-              <AccordionItem w="94%">
+              <AccordionItem w="200px">
                 <h2>
                   <AccordionButton p="8px 0px 8px 0px">
                     <Box as="span" fontSize="14px" flex="1" textAlign="left">
@@ -298,13 +310,19 @@ useEffect(()=>{
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                <Flex fontSize={"14px"} direction={"column"}>
+                
+                <Checkbox _hover={{background:"#F7F7F7"}} size="sm" isChecked={category.includes("T-Shirt")} onChange={handleFilterCheckbox} colorScheme="yellow" value="T-Shirt" >
+                  T-Shirt
+                </Checkbox>
+                <Checkbox isChecked={category.includes("Shirt")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleFilterCheckbox} colorScheme="yellow" value="Shirt" >
+                  Shirt
+                </Checkbox>
+                
+              </Flex>
                 </AccordionPanel>
               </AccordionItem>
-              <AccordionItem w="94%">
+              <AccordionItem w="200px">
                 <h2>
                   <AccordionButton p="8px 0px 8px 0px">
                     <Box as="span" fontSize="14px" flex="1" textAlign="left">
@@ -314,10 +332,7 @@ useEffect(()=>{
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                  Lorem ipsum dolor sit amet, consectetur 
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
@@ -325,7 +340,9 @@ useEffect(()=>{
            
           </Flex>
         </Box>
-        <Box w="877.5px">
+        <Box 
+        //  w="877.5px"
+         >
           <Box p="12px 15px 0" mb="12px" display="flex" justifyContent="end">
             <Box
               as="span"
@@ -351,7 +368,7 @@ useEffect(()=>{
               <option value="asc"> Low to High</option>
             </Select>
           </Box>
-          <SimpleGrid columns={3} gap="10px">
+          <SimpleGrid columns={{lg:3, md:2, sm:2, base:2}} gap="10px">
             {AllProductData.length > 0 &&
               AllProductData?.map((item) => {
                 return <ProductCard key={item.id} {...item} />;
@@ -360,7 +377,7 @@ useEffect(()=>{
         </Box>
       </Box>
       {/* </Box> */}
-    </div>
+    </Box>
   );
 };
 
