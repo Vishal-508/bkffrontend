@@ -98,7 +98,98 @@ const MensHome = () => {
   return (
     <div>
       <CarouselComp  />
-      {/* topcarousel */}
+     
+      <Box w="100%" pt="20px">
+        {" "}
+        <Image
+          w="100%"
+          p="20px"
+          src="https://images.bewakoof.com/uploads/grid/app/Desktop-Strip-6-1669217199.jpg"
+        />
+      </Box>
+      <br />
+      <Box w="100%">
+        {" "}
+        <Image
+          w="100%"
+          src="https://images.bewakoof.com/uploads/grid/app/thin-strip-new-2022-freebie-desktop-129-1661241484.jpg"
+        />
+      </Box>
+      <SimpleGrid columns={{lg:6, md:4, sm:2, base:1}} row={{lg:2, md:3, sm:6, base:12}}>
+      {categoryArr.map((item) => (
+        <Box
+          m="3px"
+          transition=".3s"
+          objectFit="contain"
+          cursor="pointer"
+          _hover={{
+            boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
+            transform: 'scale(1.01)',
+          }}
+          onClick={() => handleClick(item.category)}
+        >
+          <Image w="100%" src={item.image} />
+        </Box>
+      ))}
+    </SimpleGrid>
+      
+      <Box fontSize="20px" fontWeight="bold">
+        DISCOUNT PE DISCOUNT
+      </Box>
+      <SimpleGrid columns={{lg:2, md:2, sm:1, base:1}} row={{lg:2, md:2, sm:4, base:4}}>
+        <Box>
+          <Image
+            p="5px"
+            w="100%"
+            src="https://images.bewakoof.com/uploads/grid/app/b1g1-mid-banner-1658840210.jpg"
+          />
+        </Box>
+        <Box>
+          <Image
+            p="5px"
+            w="100%"
+            src="https://images.bewakoof.com/uploads/grid/app/undrdawg-mid-banner2-1660818217.jpg"
+          />
+        </Box>
+        <Box>
+          <Image
+            p="5px"
+            w="100%"
+            src="https://images.bewakoof.com/uploads/grid/app/sweatshirt-men-1660737200.jpg"
+          />
+        </Box>
+        <Box>
+          <Image
+            p="5px"
+            w="100%"
+            src="https://images.bewakoof.com/uploads/grid/app/new-mid-banner-2022-house-of-dragon-02-1661322716.jpg"
+          />
+        </Box>
+      </SimpleGrid>
+      <Box>
+        <Image
+          p="8px"
+          w="100%"
+          borderRadius="8px"
+          src="https://images.bewakoof.com/uploads/grid/app/desktop---strip-1440---x-150---tribe-1634552003.png"
+        />
+      </Box>
+      <Box fontSize="16px" pb="15px" fontWeight="bold" letterSpacing="2px">
+        Customize your T-shirts
+      </Box>
+      <Box>
+        <Image
+          w="100%"
+          src="https://images.bewakoof.com/uploads/grid/app/design-survey-desktop-ticker-banner-1646808890.gif"
+        />
+      </Box>
+    </div>
+  );
+};
+
+export default MensHome;
+
+ {/* topcarousel */}
       {/* <div
         id="carouselExampleIndicators"
         class="carousel slide"
@@ -208,95 +299,9 @@ const MensHome = () => {
           <span class="visually-hidden">Next</span>
         </button>
       </div> */}
-      <Box w="100%" pt="20px">
-        {" "}
-        <Image
-          w="100%"
-          p="20px"
-          src="https://images.bewakoof.com/uploads/grid/app/Desktop-Strip-6-1669217199.jpg"
-        />
-      </Box>
-      <br />
-      <Box w="100%">
-        {" "}
-        <Image
-          w="100%"
-          src="https://images.bewakoof.com/uploads/grid/app/thin-strip-new-2022-freebie-desktop-129-1661241484.jpg"
-        />
-      </Box>
-      <SimpleGrid columns={6} row={2}>
-      {categoryArr.map((item) => (
-        <Box
-          m="3px"
-          transition=".3s"
-          objectFit="contain"
-          cursor="pointer"
-          _hover={{
-            boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
-            transform: 'scale(1.01)',
-          }}
-          onClick={() => handleClick(item.category)}
-        >
-          <Image w="100%" src={item.image} />
-        </Box>
-      ))}
-    </SimpleGrid>
-      
-      <Box fontSize="20px" fontWeight="bold">
-        DISCOUNT PE DISCOUNT
-      </Box>
-      <SimpleGrid columns={2}>
-        <Box>
-          <Image
-            p="5px"
-            w="100%"
-            src="https://images.bewakoof.com/uploads/grid/app/b1g1-mid-banner-1658840210.jpg"
-          />
-        </Box>
-        <Box>
-          <Image
-            p="5px"
-            w="100%"
-            src="https://images.bewakoof.com/uploads/grid/app/undrdawg-mid-banner2-1660818217.jpg"
-          />
-        </Box>
-        <Box>
-          <Image
-            p="5px"
-            w="100%"
-            src="https://images.bewakoof.com/uploads/grid/app/sweatshirt-men-1660737200.jpg"
-          />
-        </Box>
-        <Box>
-          <Image
-            p="5px"
-            w="100%"
-            src="https://images.bewakoof.com/uploads/grid/app/new-mid-banner-2022-house-of-dragon-02-1661322716.jpg"
-          />
-        </Box>
-      </SimpleGrid>
-      <Box>
-        <Image
-          p="8px"
-          w="100%"
-          borderRadius="8px"
-          src="https://images.bewakoof.com/uploads/grid/app/desktop---strip-1440---x-150---tribe-1634552003.png"
-        />
-      </Box>
-      <Box fontSize="16px" pb="15px" fontWeight="bold" letterSpacing="2px">
-        Customize your T-shirts
-      </Box>
-      <Box>
-        <Image
-          w="100%"
-          src="https://images.bewakoof.com/uploads/grid/app/design-survey-desktop-ticker-banner-1646808890.gif"
-        />
-      </Box>
-    </div>
-  );
-};
 
-export default MensHome;
+
+
 {/* <SimpleGrid columns={6} row={2}>
         {categoryArr.map((item)=>{
           <Box m="3px" transition=".3s" objectFit={"contain"}  cursor="pointer" _hover={{boxShadow: "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",transform:"scale(1.01)"}} onClick={() => handleClick(item.category)}>
