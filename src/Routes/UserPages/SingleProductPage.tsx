@@ -16,7 +16,7 @@ import {
   AlertTitle,
   AlertDescription,
 } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
+import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   Icart_wishlistData,
@@ -30,11 +30,15 @@ import {
 } from "../../Redux/AppReducer/action_creaters";
 import { IgetProductData } from "../../Redux/AppReducer/action";
 import Footer from "../../Components/Footer";
+
+
 const SingleProductPage = () => {
+  const navigate=useNavigate();
   const dispatch = useDispatch();
+  const location=useLocation();
   const { id } = useParams();
   const [size,setSize]=useState<string>("")
-
+  const token: string = useSelector((state: any) => state.AuthReducer.token);
   const sdata: IgetProductData = useSelector(
     (state: any) => state.AppReducer.sdata
   );
@@ -54,10 +58,10 @@ setSize(ele);
 alert("Size is selected")
 
 }
-console.log(size);
+// console.log(size);
 
   const handleAddCart = () => {
-    let data: Icart_wishlistData = {
+ if(token) {  let data: Icart_wishlistData = {
       Pid:sdata._id,
       id: sdata.id,
       all_offer_price: sdata.all_offer_price,
@@ -90,7 +94,9 @@ if(size.length===0){
   .catch((err) => console.log(err));
   alert("Product is added to cart")
 }
-    
+    }else{
+      navigate("/UserLogin")
+    }
 
     //  if(cartData.length===0){
     //     postCartProduct(payload)
@@ -112,7 +118,8 @@ if(size.length===0){
     //  }
   };
   const handleMove=()=>{
-    let data: Icart_wishlistData = {
+
+  if(token) { let data: Icart_wishlistData = {
       Pid:sdata._id,
       id: sdata.id,
       all_offer_price: sdata.all_offer_price,
@@ -145,9 +152,12 @@ if(size.length===0){
       .catch((err) => console.log(err));
       alert("product is added to wishlist!")
     }
+  }else{
+    navigate("/UserLogin")
+    }
 
   }
-
+console.log(location)
   return (
     <>
     <Box  w={{lg:"69%", md:"90%"}} m="auto"  >
@@ -166,7 +176,7 @@ if(size.length===0){
             <BreadcrumbLink href="/">Home</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbItem>
-            {/* <BreadcrumbLink href="/women">women</BreadcrumbLink> */}
+            {/* <BreadcrumbLink href={location.pathname}>{location.pathname}</BreadcrumbLink> */}
           </BreadcrumbItem>
           <BreadcrumbItem isCurrentPage>
             <BreadcrumbLink _hover={{textDecoration:"none"}} href="#">{sdata.name}</BreadcrumbLink>

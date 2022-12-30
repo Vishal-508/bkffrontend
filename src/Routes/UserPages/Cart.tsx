@@ -69,46 +69,46 @@ const Cart = () => {
   const [count, setCount] = useState(0);
   // const [totalMRP, setTotalMRP] = useState(0);
   // const [subtotalprice, setSubtotalprice] = useState(0);
-  interface IamountProp{
-    totalMRP:number,
-    subtotalPrice:number
+  interface IamountProp {
+    totalMRP: number,
+    subtotalPrice: number
   }
 
-  const [totalMRP,setTotalMRP]=useState<number>(0);
-  const [subtotalprice,setSubtotalprice]=useState<number>(0);
-  const amounthandle=()=>{
-    var n=cartData.length;
-    let MRP=0;
-    let price=0;
-    if(n!==0){
-      for(var i=0;i<n;i++){
-      MRP+=Number(cartData[i].mrp)
-      price+=Number(cartData[i].price)
+  const [totalMRP, setTotalMRP] = useState<number>(0);
+  const [subtotalprice, setSubtotalprice] = useState<number>(0);
+  const amounthandle = () => {
+    var n = cartData.length;
+    let MRP = 0;
+    let price = 0;
+    if (n !== 0) {
+      for (var i = 0; i < n; i++) {
+        MRP += Number(cartData[i].mrp)
+        price += Number(cartData[i].price)
+      }
+      setTotalMRP(MRP);
+      setSubtotalprice(price);
+
+      // localStorage.setItem("totalMRP",String(MRP));
+      // localStorage.setItem("subtotal",String(price));
     }
-    setTotalMRP(MRP);
-    setSubtotalprice(price);
-    
-    // localStorage.setItem("totalMRP",String(MRP));
-    // localStorage.setItem("subtotal",String(price));
   }
-  }
-  useEffect(()=>{
+  useEffect(() => {
     const payload = {
       dispatch,
     };
-    getCartProduct(payload).then((res)=>amounthandle())
-// amounthandle()
-  },[cartData.length])
+    getCartProduct(payload).then((res) => amounthandle())
+    // amounthandle()
+  }, [cartData.length])
   // const amountObj:IamountProp=JSON.parse(localStorage.getItem("amountSummary"));
   // var totalMRP=localStorage.getItem("totalMRP");
   // var subtotalprice=localStorage.getItem("subtotalPrice");
-  
+
   var discount = totalMRP - subtotalprice;
   useEffect(() => {
     const payload = {
       dispatch,
     };
-    getCartProduct(payload).then((res)=>amounthandle());
+    getCartProduct(payload).then((res) => amounthandle());
     getAddressData(payload)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
@@ -155,9 +155,17 @@ const Cart = () => {
   if (cartData.length > 0) {
     return (
       <>
-        <Flex w="60%" m="auto" direction="column">
+        <Flex 
+        // w="60%"
+        w={{lg:"70%", md:"90%",sm:"100%"}}
+        // wrap={"wrap"}
+         m="auto" direction="column">
           <Box
-            w="100%"
+            // w="100%"
+            w={{lg:"98%", md:"80%",sm:"90%", base:"98%"}}
+            m={"auto"}
+            
+            // border={"1px solid black"}
             textAlign="left"
             fontSize="15px"
             p="39px 0 0"
@@ -169,8 +177,11 @@ const Cart = () => {
             </Box>{" "}
           </Box>
           <Box>
-            <Flex p="35px 0 100px">
-              <Flex direction="column" pr="15px" w="60% ">
+            <Flex justify={"center"} p="35px 0 100px"  wrap={{lg:"nowrap",md:"wrap",sm:"wrap", base:"wrap"}}  >
+              <Flex direction="column" justify={{lg:"initial",md:"center",sm:"center",base:"center"}} m="15px"
+              //  w="60%"
+              w={{lg:"50%",md:"80%", sm:"90%",base:"100%"}}
+                >
                 <Flex
                   h="50px"
                   bg="rgb(252, 255, 238)"
@@ -193,7 +204,10 @@ const Cart = () => {
                     })}
                 </Flex>
               </Flex>
-              <Box w="40%" position={"relative"}>
+              <Box 
+              // w="40%"
+              w={{lg:"50%",md:"80%", sm:"90%",base:"100%"}}
+               position={"relative"} m="15px" >
                 <Box position={"sticky"} top="52px">
                   <Flex
                     bg="#FDD835"
@@ -233,11 +247,11 @@ const Cart = () => {
                       justify="space-between"
                     >
                       {" "}
-                      <Box as="span" color="#42A2A2" fontSize="12px">
+                      <Box as="span" textAlign={"left"} color="#42A2A2" fontSize="12px">
                         {" "}
                         Have a Coupon / Referral / Gift Card ?
                       </Box>
-                      <Flex color="#42A2A2" align="center" fontWeight="bold">
+                      <Flex color="#42A2A2" ml={"10px"} align="center" fontWeight="bold">
                         Redeem{" "}
                         <Image
                           ml="6px"
@@ -291,17 +305,19 @@ const Cart = () => {
                       <Flex
                         justify="space-between"
                         align="center"
+                        
                         m="40px -15px 0px -20px"
                         borderTop="1px solid #eaeaea"
+                        
                         p="10px"
                       >
-                        <Box>
+                        <Box  >
                           <Box as="span">Total</Box>
                           <Box as="p" fontSize={"16px"}>
                             ₹ {subtotalprice}
                           </Box>
                         </Box>
-                        <Box>
+                        <Box w="60%" >
                           {" "}
                           {addressData.length === 0 ? (
                             <Box>
@@ -461,7 +477,8 @@ const Cart = () => {
                             </Box>
                           ) : (
                             <Button
-                              w="280px"
+                              // w="280px"
+                              w="100%"
                               color="white"
                               p="15px"
                               bg="#42A2A2"
@@ -519,9 +536,10 @@ const Cart = () => {
             </Flex>
           </Center>
           <hr
-            style={{ width: "430px", margin: "18px auto", textAlign: "center" }}
+            style={{ width: "30%", margin: "18px auto", textAlign: "center" }}
           />
           <Flex
+          // border={"1px solid black"}
             m="35px 10"
             direction="column"
             justify="center"
@@ -531,7 +549,7 @@ const Cart = () => {
               You could try one of these categories:
             </Box>
             <Box>
-              <TableContainer mt="20px" color="#51cccc">
+              <TableContainer  mt="20px" color="#51cccc">
                 <Table variant="unstyled">
                   <Thead>
                     <Tr p="5px 50px">

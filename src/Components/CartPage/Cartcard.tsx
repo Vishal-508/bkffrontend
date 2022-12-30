@@ -258,6 +258,7 @@ const Cartcard = (props: Icart_wishlistData) => {
           </Box>
           <Image
             borderRadius="5px"
+            ml="8px"
             border="1px solid #eaeaea"
             w="104px"
             h="129.5px"
@@ -273,6 +274,7 @@ const Cartcard = (props: Icart_wishlistData) => {
           bg="#fff"
           p="18px 0"
           w="40%"
+          borderBottomLeftRadius={"5px"}
           onClick={handleDelete}
         >
           Remove
@@ -284,6 +286,7 @@ const Cartcard = (props: Icart_wishlistData) => {
           borderRadius="none"
           borderTop="2px solid #eaeaea"
           onClick={handleMove}
+          borderBottomRightRadius={"5px"}
         >
           Move to Wishlist
         </Button>
