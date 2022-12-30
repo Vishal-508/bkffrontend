@@ -38,7 +38,7 @@ const WishList = () => {
         <Box w="70%"  m={"0px auto 20px"} border="1ps solid black" >
           <Box mt="20px" mb="10px" textAlign={"left"} fontWeight="bold" letterSpacing={2} >WISHLIST</Box>
           <Box>
-          <SimpleGrid columns={4} gap="25px">
+          <SimpleGrid columns={{lg:4,md:3,sm:2,base:1}} gap="25px">
             {wishlistData.length > 0 &&
               wishlistData?.map((item) => {
                 return <Wishlistcard  key={item.id} {...item} />;
