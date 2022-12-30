@@ -103,7 +103,7 @@ const WomenHome = () => {
               src="https://images.bewakoof.com/uploads/grid/app/thin-strip-new-2022-freebie-desktop-129-1661241484.jpg"
             />
           </Box>
-          <SimpleGrid columns={6} row={2}>
+          <SimpleGrid columns={{lg:6, md:4, sm:2, base:1}} row={{lg:2, md:3, sm:6, base:12}}>
       {categoryArr.map((item) => (
         <Box
           m="3px"
@@ -124,7 +124,7 @@ const WomenHome = () => {
           <Box fontSize="20px" fontWeight="bold">
             DISCOUNT PE DISCOUNT
           </Box>
-          <SimpleGrid columns={2} >
+          <SimpleGrid columns={{lg:2, md:2, sm:1, base:1}} row={{lg:2, md:2, sm:4, base:4}} >
             <Box>
               <Image p="5px" w="100%" src="https://images.bewakoof.com/uploads/grid/app/b1g1-mid-banner-1658840210.jpg" />
             </Box>
