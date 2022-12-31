@@ -16,9 +16,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { userLogin } from '../../Redux/AuthReducer/action_creaters';
-// import Navbar from "../Components/Navbar";
-// import { AppContext } from "../Context/AppContext";
-// import { loginSuccess } from "../Context/Action";
+
 
 const getData=()=>{
   return fetch("http://localhost:3006/users")
@@ -32,19 +30,15 @@ const UserLogin = () => {
     password:""
   }
   const [loginData,setLoginData]=useState(initData)
-  // const [data,setData]=useState([])
-  // const {state,dispatch}=useContext(AppContext)
+ 
   const navigate=useNavigate()
   const dispatch=useDispatch();
-  // const [redirect,setRedirect]=useState(false);
+ 
   const handleChange:React.ChangeEventHandler<HTMLInputElement>=(e)=>{
     const {name,value}=e.target;
     setLoginData({...loginData,[name]:value})
   }
-  // {state.isAuth && navigate("/")}
-//  useEffect(()=>{
-// getData().then((res)=>setData(res))
-//  },[])
+
   const handleSubmit:React.FormEventHandler<HTMLFormElement>=(e)=>{
     e.preventDefault()
     const payload={
@@ -55,11 +49,7 @@ const UserLogin = () => {
     userLogin(payload).then((res)=>navigate("/",{replace:true}))
     
 
-    // getData().then((res)=>{
-    // console.log(res)
-    // setData(res)
-  // })
-  // authenticate()
+
   }
 // const authenticate=()=>{
 //   {data.map((item)=>{
@@ -67,23 +57,26 @@ const UserLogin = () => {
 //       return dispatch(loginSuccess(item.username))
       
 //     }
-    
+     
 //   })}
 // }
 
 
-  // console.log(data)
+
   return (
-    <Box backgroundColor="#fff4c4" h="94.5vh" w="100%">
+    <Box backgroundColor="#fff4c4" h="94.5vh" w="100%"  >
       {/* <Navbar /> */}
-      <Box backgroundColor="#fff4c4">
-        <Flex w="93.5%" m="auto">
+      <Box backgroundColor="#fff4c4" >
+        <Flex w={{lg:"93.5%",md:"90%",sm:"90%",base:"90%"}} wrap={{lg:"nowrap",md:"wrap",sm:"wrap",base:"wrap"}} m="auto" 
+        justifyContent="center" >
           <Flex
             direction="column"
             justify="space-between"
             pb="30px"
             align="center"
-            w="50%"
+            // w="50%"
+          // border={"1px solid black"}
+          display={{md:"none", sm:"none",base:"none",lg:"unset"}}
             height="calc(100vh - 79px)"
             backgroundImage=" linear-gradient(0deg, rgb(255, 244, 196), rgb(255, 255, 255))"
           >
@@ -106,7 +99,9 @@ const UserLogin = () => {
               />
             </Box>
           </Flex>
-          <Box bgColor="#FFFFFF" w="50%">
+          <Box bgColor="#FFFFFF"
+           w={{lg:"50%",md:"90%",sm:"90%",base:"90%" }}
+            >
             <Box mt="130px">
               <Text mb="22px" fontWeight="bold" fontSize="24px">
                 Log in / Sign up
@@ -128,7 +123,8 @@ const UserLogin = () => {
                 m="20px 0"
                 focusBorderColor="#fff4c4"
                 h="60px"
-                w="522px"
+                // w="522px"
+                w="80%"
                 name="email"
                 value={loginData.email}
                 onChange={handleChange}
@@ -140,7 +136,8 @@ const UserLogin = () => {
               <Input
                 focusBorderColor="#fff4c4"
                 h="60px"
-                w="522px"
+                w="80%"
+                // w="522px"
                 name="password"
                 value={loginData.password}
                 onChange={handleChange}
@@ -152,7 +149,8 @@ const UserLogin = () => {
               <Input
                 m="20px 0"
                 h="60px"
-                w="522px"
+                w="80%"
+                // w="522px"
                 type="submit"
                 bg="#42A2A2"
                 fontSize="20px"
@@ -162,7 +160,10 @@ const UserLogin = () => {
                 _hover={{ background: "#349393", cursor: "pointer" }}
               />
               </form>
-              <Box position="relative" w="580px" m=" 20px auto">
+              <Box position="relative" 
+              // w="580px"
+              w="80%"
+               m=" 20px auto">
                 <hr />{" "}
                 <Box
                   position="relative"
@@ -176,14 +177,18 @@ const UserLogin = () => {
                 </Box>
               </Box>
             </FormControl>
-            <Box w="522px" m="auto">
+            <Box
+            //  w="522px"
+              // m="auto"
+              >
               <Link to="/UserSignUp" >
               <Button
                 mb="25px"
                 bg="#fff4c4"
                 color="#333333"
                 _hover={{ background: "#42A2A2", color: "white" }}
-                w="522px"
+                // w="522px"
+                w="80%"
                 h="60px"
                 colorScheme="teal"
                 size="lg"
@@ -191,7 +196,7 @@ const UserLogin = () => {
                 SIGN UP
               </Button>
                 </Link>
-              <Box fontSize="12px" as="p">
+              <Box fontSize="12px" as="p"  w="80%" m={"5px auto 25px"} >
                 By creating an account or logging in, you agree with Bewakoof's{" "}
                 <Box as="span" fontWeight="bold" color="#42A2A2">
                   Terms and Conditions{" "}

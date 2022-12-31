@@ -16,7 +16,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userSignup } from "../../Redux/AuthReducer/action_creaters";
-// import Navbar from "../Components/Navbar";
+
 const UserSignUp = () => {
   
 
@@ -79,13 +79,14 @@ interface Iinitstate{
     <Box backgroundColor="#fff4c4" h="94.5vh" w="100%">
       {/* <Navbar /> */}
       <Box backgroundColor="#fff4c4">
-        <Flex w="93.5%" m="auto">
+        <Flex w={{lg:"93.5%",md:"90%",sm:"90%",base:"90%"}} wrap={{lg:"nowrap",md:"wrap",sm:"wrap",base:"wrap"}} m="auto" 
+        justifyContent="center">
           <Flex
             direction="column"
             justify="space-between"
             pb="30px"
             align="center"
-            w="50%"
+            display={{md:"none", sm:"none",base:"none",lg:"unset"}}
             height="calc(100vh - 79px)"
             backgroundImage=" linear-gradient(0deg, rgb(255, 244, 196), rgb(255, 255, 255))"
           >
@@ -108,7 +109,7 @@ interface Iinitstate{
               />
             </Box>
           </Flex>
-          <Box bgColor="#FFFFFF" w="50%">
+          <Box bgColor="#FFFFFF"  w={{lg:"50%",md:"90%",sm:"90%",base:"90%" }}>
             <Box mt="130px">
               <Text mb="22px" fontWeight="bold" fontSize="24px">
                 Sign up
@@ -129,7 +130,7 @@ interface Iinitstate{
                 m="20px 0"
                 focusBorderColor="#fff4c4"
                 h="60px"
-                w="522px"
+                w="80%"
                 type="text"
                 onChange={handleForm}
                 name="name"
@@ -141,7 +142,7 @@ interface Iinitstate{
                 id="number"
                 focusBorderColor="#fff4c4"
                 h="60px"
-                w="522px"
+                w="80%"
                 maxLength={10}
                 type="number"
                 onChange={handleForm}
@@ -154,7 +155,7 @@ interface Iinitstate{
                 m="20px 0"
                 focusBorderColor="#fff4c4"
                 h="60px"
-                w="522px"
+                w="80%"
                 type="email"
                 onChange={handleForm}
                 name="email"
@@ -167,7 +168,7 @@ interface Iinitstate{
               id="password"
                 focusBorderColor="#fff4c4"
                 h="60px"
-                w="522px"
+                w="80%"
                 type="password"
                 onChange={handleForm}
                 name="password"
@@ -179,7 +180,7 @@ interface Iinitstate{
               <Input
                 m="35px 0"
                 h="60px"
-                w="522px"
+                w="80%"
                 type="submit"
                 bg="#42A2A2"
                 fontSize="20px"
@@ -191,9 +192,9 @@ interface Iinitstate{
             </form>
               
             </FormControl>
-            <Box w="522px" m="auto">
+            <Box w="80%" m="auto">
            
-              <Box fontSize="12px" as="p">
+              <Box fontSize="12px" mb={"25px"} as="p">
                 By creating an account or logging in, you agree with Bewakoof's{" "}
                 <Box as="span" fontWeight="bold" color="#42A2A2">
                   Terms and Conditions{" "}
