@@ -322,7 +322,9 @@ const Navbar = () => {
                 <DrawerOverlay />
                 <DrawerContent>
                   <DrawerCloseButton />
-                  <DrawerHeader><Image w="70%" src="https://images.bewakoof.com/web/ic-desktop-normal-bwkf-logo-christmas-v1.svg" alt="" /></DrawerHeader>
+                  <DrawerHeader>
+                    <Link to="/" >
+                    <Image w="70%" src="https://images.bewakoof.com/web/ic-desktop-normal-bwkf-logo-christmas-v1.svg" alt="" /></Link></DrawerHeader>
 
                   <DrawerBody>
                     {token ? <Box bg="#E2E8F0" fontWeight={"bold"} p="10px" >Hi, &nbsp; <Box as="em" >{username}</Box> </Box> : <Link to="/UserLogin" >
@@ -342,7 +344,9 @@ const Navbar = () => {
                 </DrawerContent>
               </Drawer>
             </Box>
-            <Image w={"50px"} src="https://images.bewakoof.com/web/ic-web-head-bwk-primary-logo-eyes-christmas.svg" />
+            <Link to="/">
+            <Image _hover={{cursor:"pointer"}} w={"50px"} src="https://images.bewakoof.com/web/ic-web-head-bwk-primary-logo-eyes-christmas.svg" />
+            </Link>
           </Box>
           <Flex m={"0 15px"} justify="center" align={"center"} >
             <Box  >
