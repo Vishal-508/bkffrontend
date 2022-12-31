@@ -87,7 +87,7 @@ const Navbar = () => {
     // console.log(AllProductData);
 
     localStorage.setItem("gender", gender);
-        onClose()
+        
 
     navigate("/ProductsPage");
   };
@@ -333,8 +333,8 @@ const Navbar = () => {
 
                     <Box lineHeight={"2.5"} p="10px" color={"#E2E8F0"} fontWeight="bold" >
                       SHOP IN
-                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} color={"black"} onClick={() => handleClick("Men")}  fontWeight="bold" >Mens</Box>
-                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} onClick={() => handleClick("Women")} color={"black"} fontWeight="bold" >Womens</Box>
+                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} color={"black"}  onClick={() => {handleClick("Men"); onClose()}}   fontWeight="bold" >Mens</Box>
+                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} onClick={() => {handleClick("Women"); onClose()}} color={"black"} fontWeight="bold" >Womens</Box>
                     </Box>
                   </DrawerBody>
 
