@@ -87,7 +87,7 @@ const Navbar = () => {
     // console.log(AllProductData);
 
     localStorage.setItem("gender", gender);
-
+        
 
     navigate("/ProductsPage");
   };
@@ -322,7 +322,9 @@ const Navbar = () => {
                 <DrawerOverlay />
                 <DrawerContent>
                   <DrawerCloseButton />
-                  <DrawerHeader><Image w="70%" src="https://images.bewakoof.com/web/ic-desktop-normal-bwkf-logo-christmas-v1.svg" alt="" /></DrawerHeader>
+                  <DrawerHeader>
+                    <Link to="/" >
+                    <Image w="70%" src="https://images.bewakoof.com/web/ic-desktop-normal-bwkf-logo-christmas-v1.svg" alt="" /></Link></DrawerHeader>
 
                   <DrawerBody>
                     {token ? <Box bg="#E2E8F0" fontWeight={"bold"} p="10px" >Hi, &nbsp; <Box as="em" >{username}</Box> </Box> : <Link to="/UserLogin" >
@@ -331,8 +333,8 @@ const Navbar = () => {
 
                     <Box lineHeight={"2.5"} p="10px" color={"#E2E8F0"} fontWeight="bold" >
                       SHOP IN
-                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} color={"black"} onClick={() => handleClick("Men")} fontWeight="bold" >Mens</Box>
-                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} onClick={() => handleClick("Women")} color={"black"} fontWeight="bold" >Womens</Box>
+                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} color={"black"}  onClick={() => {handleClick("Men"); onClose()}}   fontWeight="bold" >Mens</Box>
+                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} onClick={() => {handleClick("Women"); onClose()}} color={"black"} fontWeight="bold" >Womens</Box>
                     </Box>
                   </DrawerBody>
 
@@ -342,7 +344,9 @@ const Navbar = () => {
                 </DrawerContent>
               </Drawer>
             </Box>
-            <Image w={"50px"} src="https://images.bewakoof.com/web/ic-web-head-bwk-primary-logo-eyes-christmas.svg" />
+            <Link to="/">
+            <Image _hover={{cursor:"pointer"}} w={"50px"} src="https://images.bewakoof.com/web/ic-web-head-bwk-primary-logo-eyes-christmas.svg" />
+            </Link>
           </Box>
           <Flex m={"0 15px"} justify="center" align={"center"} >
             <Box  >
