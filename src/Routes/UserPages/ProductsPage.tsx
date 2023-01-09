@@ -36,6 +36,7 @@ const ProductsPage = () => {
   
   const [searchParams,setSearchParams]=useSearchParams(); 
   const initialCategoryFilters=searchParams.getAll("category");
+  const initialColorFilters=searchParams.getAll("color");
   const initialBrandFilters=searchParams.getAll("manufacturer_brand");
   const initialGenderFilters=searchParams.getAll("gender");
   const initialsort=searchParams.get("sort");
@@ -55,6 +56,7 @@ const ProductsPage = () => {
 
   const [category, setCategory] = useState<string[]>(initialCategoryFilters || []);
   const [brand, setBrand]=useState<string[]>(initialBrandFilters || []);
+  const [color, setColor]=useState<string[]>(initialColorFilters || []);
 
 //  const [gender,setGender]=useState<string | null>(initialGenderFilters[0] || "");
 const gender=localStorage.getItem("gender")
@@ -85,6 +87,19 @@ const handleBrandCheckbox=(e:React.ChangeEvent<HTMLInputElement>)=>{
     newBrand.push(e.target.value)
   }
   setBrand(newBrand)
+}
+const handleColorCheckbox=(e:React.ChangeEvent<HTMLInputElement>)=>{
+
+  var newcolor: string[] =[...color];
+
+  if(newcolor.includes(e.target.value)){
+
+    newcolor.splice(newcolor.indexOf(e.target.value),1)
+  }else{
+    newcolor=[];
+    newcolor.push(e.target.value)
+  }
+  setColor(newcolor)
 }
 
 function initCat():void{
@@ -137,13 +152,13 @@ useEffect(() => {
     category && (params.category = category);
     gender && (params.gender = gender);
     brand && (params.manufacturer_brand=brand);
-
+    color && (params.color = color);
    sort && (params.sort=sort);
     setSearchParams(params);
 
   }
   console.log("95 line no. use effect is run")
-}, [sort,brand, category,setSearchParams]);
+}, [sort,brand,color, category,setSearchParams]);
 
 
 useEffect(()=>{
@@ -153,6 +168,7 @@ useEffect(()=>{
       limit: 40,
       category: category,
       manufacturer_brand:brand,
+      color:color,
       gender: gender ,
       page: 1,
       sort: sort
@@ -176,6 +192,7 @@ useEffect(()=>{
       category: category,
       gender: gender ,
       page: 1,
+      color:color,
       sort: sort
     },
   
@@ -419,7 +436,20 @@ useEffect(()=>{
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur 
+                  <Flex direction={"column"} >
+                <Checkbox isChecked={color.includes("black")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleColorCheckbox} colorScheme="yellow" value="black" >
+                  black
+                </Checkbox>
+                <Checkbox isChecked={color.includes("red")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleColorCheckbox} colorScheme="yellow" value="red" >
+                  red
+                </Checkbox>
+                <Checkbox isChecked={color.includes("blue")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleColorCheckbox} colorScheme="yellow" value="blue" >
+                  blue
+                </Checkbox>
+                <Checkbox isChecked={color.includes("white")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleColorCheckbox} colorScheme="yellow" value="white" >
+                  white
+                </Checkbox>
+                </Flex>
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
