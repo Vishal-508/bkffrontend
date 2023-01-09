@@ -85,9 +85,10 @@ const Navbar = () => {
 
     // getAllProducts(payload);
     // console.log(AllProductData);
-
+var category="T-Shirt"
     localStorage.setItem("gender", gender);
-        
+  
+    
 
     navigate("/ProductsPage");
   };
@@ -260,7 +261,7 @@ const Navbar = () => {
                         {/* <MenuItem>My Orders</MenuItem> */}
                         {/* <MenuItem>Wishlist</MenuItem> */}
                         {/* <MenuItem>My Profile</MenuItem> */}
-                        <MenuItem _hover={{  cursor: "pointer", background: "#E2E8F0" }} onClick={handleLogOut} >Log Out</MenuItem>
+                        <MenuItem _hover={{ cursor: "pointer", background: "#E2E8F0" }} onClick={handleLogOut} >Log Out</MenuItem>
                       </MenuList>
                     </Menu>
                   ) : (
@@ -324,7 +325,7 @@ const Navbar = () => {
                   <DrawerCloseButton />
                   <DrawerHeader>
                     <Link to="/" >
-                    <Image w="70%" src="https://images.bewakoof.com/web/ic-desktop-normal-bwkf-logo-christmas-v1.svg" alt="" /></Link></DrawerHeader>
+                      <Image w="70%" src="https://images.bewakoof.com/web/ic-desktop-normal-bwkf-logo-christmas-v1.svg" alt="" /></Link></DrawerHeader>
 
                   <DrawerBody>
                     {token ? <Box bg="#E2E8F0" fontWeight={"bold"} p="10px" >Hi, &nbsp; <Box as="em" >{username}</Box> </Box> : <Link to="/UserLogin" >
@@ -333,8 +334,8 @@ const Navbar = () => {
 
                     <Box lineHeight={"2.5"} p="10px" color={"#E2E8F0"} fontWeight="bold" >
                       SHOP IN
-                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} color={"black"}  onClick={() => {handleClick("Men"); onClose()}}   fontWeight="bold" >Mens</Box>
-                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} onClick={() => {handleClick("Women"); onClose()}} color={"black"} fontWeight="bold" >Womens</Box>
+                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} color={"black"} onClick={() => { handleClick("Men"); onClose() }} fontWeight="bold" >Mens</Box>
+                      <Box _hover={{ cursor: "pointer", background: "#E2E8F0" }} onClick={() => { handleClick("Women"); onClose() }} color={"black"} fontWeight="bold" >Womens</Box>
                     </Box>
                   </DrawerBody>
 
@@ -345,7 +346,7 @@ const Navbar = () => {
               </Drawer>
             </Box>
             <Link to="/">
-            <Image _hover={{cursor:"pointer"}} w={"50px"} src="https://images.bewakoof.com/web/ic-web-head-bwk-primary-logo-eyes-christmas.svg" />
+              <Image _hover={{ cursor: "pointer" }} w={"50px"} src="https://images.bewakoof.com/web/ic-web-head-bwk-primary-logo-eyes-christmas.svg" />
             </Link>
           </Box>
           <Flex m={"0 15px"} justify="center" align={"center"} >

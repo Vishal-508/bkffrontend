@@ -20,6 +20,7 @@ interface Iparams{
   limit ?:number,
   category ?:string[] | string,
   gender:string | null ,
+  manufacturer_brand ?:string[] | string,
   sort:any ,
   page:number
 }
@@ -29,11 +30,11 @@ interface IsearchParamsProps{
 }
 export const getAllProducts = (payload: IsearchParamsProps) => {
   const { params,  dispatch } = payload;
-  const{category,page,gender,sort,limit}=params;
+  const{category,page,gender,sort,limit,manufacturer_brand}=params;
   dispatch({ type: App_ActionType.LOADING });
   return axios
     .get(
-      `https://smiling-jade-fly.cyclic.app/allproducts?limit=${limit}&page=${page}&sort=${sort}`,{params:{category:category, gender:gender}}
+      `https://smiling-jade-fly.cyclic.app/allproducts?limit=${limit}&page=${page}&sort=${sort}`,{params:{category:category, gender:gender,manufacturer_brand:manufacturer_brand}}
     )
     .then((res) =>
       dispatch({ type: App_ActionType.GET_PRODUCT_SUCCESS, payload: res.data })
