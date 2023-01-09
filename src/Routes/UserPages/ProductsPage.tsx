@@ -36,6 +36,7 @@ const ProductsPage = () => {
   
   const [searchParams,setSearchParams]=useSearchParams(); 
   const initialCategoryFilters=searchParams.getAll("category");
+  const initialBrandFilters=searchParams.getAll("manufacturer_brand");
   const initialGenderFilters=searchParams.getAll("gender");
   const initialsort=searchParams.get("sort");
   const AllProductData: IproductData[] = useSelector(
@@ -53,6 +54,7 @@ const ProductsPage = () => {
   const [sort, setSort] = useState(initialsort || "");
 
   const [category, setCategory] = useState<string[]>(initialCategoryFilters || []);
+  const [brand, setBrand]=useState<string[]>(initialBrandFilters || []);
 
 //  const [gender,setGender]=useState<string | null>(initialGenderFilters[0] || "");
 const gender=localStorage.getItem("gender")
@@ -60,7 +62,7 @@ const gender=localStorage.getItem("gender")
 //  console.log(AllProductData)
 
 
-const handleFilterCheckbox=(e:React.ChangeEvent<HTMLInputElement>)=>{
+const handleCategoryCheckbox=(e:React.ChangeEvent<HTMLInputElement>)=>{
 
   const newCategories: string[] =[...category];
 
@@ -71,6 +73,18 @@ const handleFilterCheckbox=(e:React.ChangeEvent<HTMLInputElement>)=>{
     newCategories.push(e.target.value)
   }
   setCategory(newCategories)
+}
+const handleBrandCheckbox=(e:React.ChangeEvent<HTMLInputElement>)=>{
+
+  const newBrand: string[] =[...brand];
+
+  if(newBrand.includes(e.target.value)){
+
+    newBrand.splice(newBrand.indexOf(e.target.value),1)
+  }else{
+    newBrand.push(e.target.value)
+  }
+  setBrand(newBrand)
 }
 
 function initCat():void{
@@ -122,12 +136,14 @@ useEffect(() => {
     let params: any= {};
     category && (params.category = category);
     gender && (params.gender = gender);
+    brand && (params.manufacturer_brand=brand);
+
    sort && (params.sort=sort);
     setSearchParams(params);
 
   }
   console.log("95 line no. use effect is run")
-}, [sort, category,setSearchParams]);
+}, [sort,brand, category,setSearchParams]);
 
 
 useEffect(()=>{
@@ -136,6 +152,7 @@ useEffect(()=>{
 
       limit: 40,
       category: category,
+      manufacturer_brand:brand,
       gender: gender ,
       page: 1,
       sort: sort
@@ -274,30 +291,87 @@ useEffect(()=>{
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
+                </h2>{
+                  gender==="Men"?
+                  <AccordionPanel pb={4}>
                   <Flex fontSize={"14px"} direction={"column"}>
                 
-                    <Checkbox _hover={{background:"#F7F7F7"}} size="sm" isChecked={category.includes("T-Shirt")} onChange={handleFilterCheckbox} colorScheme="yellow" value="T-Shirt" >
+                    <Checkbox _hover={{background:"#F7F7F7"}} size="sm" isChecked={category.includes("T-Shirt")} onChange={handleCategoryCheckbox} colorScheme="yellow" value="T-Shirt" >
                       T-Shirt
                     </Checkbox>
-                    <Checkbox isChecked={category.includes("Shirt")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleFilterCheckbox} colorScheme="yellow" value="Shirt" >
+                    <Checkbox isChecked={category.includes("Shirt")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Shirt" >
                       Shirt
                     </Checkbox>
-                    <Checkbox isChecked={category.includes("Shorts")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleFilterCheckbox} colorScheme="yellow" value="Shorts" >
+                    <Checkbox isChecked={category.includes("Shorts")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Shorts" >
                       Shorts
                     </Checkbox>
-                    <Checkbox isChecked={category.includes("Sweater")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleFilterCheckbox} colorScheme="yellow" value="Sweater" >
+                    <Checkbox isChecked={category.includes("Sweater")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Sweater" >
                       Sweater
                     </Checkbox>
-                    <Checkbox isChecked={category.includes("Hoodies")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleFilterCheckbox} colorScheme="yellow" value="Hoodies" >
+                    <Checkbox isChecked={category.includes("Hoodies")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Hoodies" >
                       Hoodies
                     </Checkbox>
-                    <Checkbox isChecked={category.includes("Jeans")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleFilterCheckbox} colorScheme="yellow" value="Jeans" >
+                    <Checkbox isChecked={category.includes("Jeans")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Jeans" >
                       Jeans
                     </Checkbox>
+                    <Checkbox isChecked={category.includes("Jacket")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Jacket" >
+                      Jackets
+                    </Checkbox>
+                    <Checkbox isChecked={category.includes("Boxer")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Boxer" >
+                      Boxer
+                    </Checkbox>
+                    <Checkbox isChecked={category.includes("Pyjama")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Pyjama" >
+                      Pyjama
+                    </Checkbox>
+                    <Checkbox isChecked={category.includes("Vest")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Vest" >
+                      Vest
+                    </Checkbox>
+                    
                   </Flex>
-                </AccordionPanel>
+                </AccordionPanel>:
+                 <AccordionPanel pb={4}>
+                 <Flex fontSize={"14px"} direction={"column"}>
+               
+                   <Checkbox _hover={{background:"#F7F7F7"}} size="sm" isChecked={category.includes("T-Shirt")} onChange={handleCategoryCheckbox} colorScheme="yellow" value="T-Shirt" >
+                     T-Shirt
+                   </Checkbox>
+                   <Checkbox isChecked={category.includes("Shirt")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Shirt" >
+                     Shirt
+                   </Checkbox>
+                   <Checkbox isChecked={category.includes("Shorts")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Shorts" >
+                     Shorts
+                   </Checkbox>
+                   <Checkbox isChecked={category.includes("Sweater")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Sweater" >
+                     Sweater
+                   </Checkbox>
+                   <Checkbox isChecked={category.includes("Hoodies")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Hoodies" >
+                     Hoodies
+                   </Checkbox>
+                   <Checkbox isChecked={category.includes("Jeans")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Jeans" >
+                     Jeans
+                   </Checkbox>
+                   <Checkbox isChecked={category.includes("Dress")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Dress" >
+                     Dress
+                   </Checkbox>
+                   <Checkbox isChecked={category.includes("Top")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Top" >
+                     Top
+                   </Checkbox>
+                   <Checkbox isChecked={category.includes("Kurta Set")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Kurta Set" >
+                     Kurta Set
+                   </Checkbox>
+                   <Checkbox isChecked={category.includes("Tights")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Tights" >
+                     Tights
+                   </Checkbox>
+                   <Checkbox isChecked={category.includes("Nightsuits")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Nightsuits" >
+                     Nightsuits
+                   </Checkbox>
+                   <Checkbox isChecked={category.includes("Pyjama")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleCategoryCheckbox} colorScheme="yellow" value="Pyjama" >
+                     Pyjama
+                   </Checkbox>
+                 </Flex>
+               </AccordionPanel>
+
+              }
               </AccordionItem>
 
               <AccordionItem w="200px">
@@ -312,12 +386,25 @@ useEffect(()=>{
                 <AccordionPanel pb={4}>
                 <Flex fontSize={"14px"} direction={"column"}>
                 
-                <Checkbox _hover={{background:"#F7F7F7"}} size="sm" isChecked={category.includes("T-Shirt")} onChange={handleFilterCheckbox} colorScheme="yellow" value="T-Shirt" >
-                  T-Shirt
+                <Checkbox _hover={{background:"#F7F7F7"}} size="sm" isChecked={brand.includes("Bewakoof")} onChange={handleBrandCheckbox} colorScheme="yellow" value="Bewakoof" >
+                  Bewakoof
                 </Checkbox>
-                <Checkbox isChecked={category.includes("Shirt")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleFilterCheckbox} colorScheme="yellow" value="Shirt" >
-                  Shirt
+                <Checkbox isChecked={brand.includes("Campus Sutra")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleBrandCheckbox} colorScheme="yellow" value="Campus Sutra" >
+                  Campus Sutra
                 </Checkbox>
+                <Checkbox isChecked={brand.includes("Dillinger")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleBrandCheckbox} colorScheme="yellow" value="Dillinger" >
+                  Dillinger
+                </Checkbox>
+                <Checkbox isChecked={brand.includes("Rigo")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleBrandCheckbox} colorScheme="yellow" value="Rigo" >
+                  Rigo
+                </Checkbox>
+                <Checkbox isChecked={brand.includes("Breakbounce")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleBrandCheckbox} colorScheme="yellow" value="Breakbounce" >
+                  Breakbounce
+                </Checkbox>
+                <Checkbox isChecked={brand.includes("Snitch")} _hover={{background:"#F7F7F7"}} size="sm" onChange={handleBrandCheckbox} colorScheme="yellow" value="Snitch" >
+                  Snitch
+                </Checkbox>
+             
                 
               </Flex>
                 </AccordionPanel>
