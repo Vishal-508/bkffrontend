@@ -3,7 +3,7 @@ import axios from "axios";
 import { AppActions, IgetProductData } from "./action";
 import { App_ActionType } from "./action_types";
 import { IaddressData, Icart_wishlistData } from "./reducer";
-
+import BASE_URL from "../../Utils/domain";
 // interface IsearchParamsProps {
 //   limit?: number;
 //   page?: number;
@@ -35,7 +35,7 @@ export const getAllProducts = (payload: IsearchParamsProps) => {
   dispatch({ type: App_ActionType.LOADING });
   return axios
     .get(
-      `https://smiling-jade-fly.cyclic.app/allproducts?limit=${limit}&page=${page}&sort=${sort}`,{params:{category:category, gender:gender,manufacturer_brand:manufacturer_brand,color:color}}
+      `${BASE_URL}/allproducts?limit=${limit}&page=${page}&sort=${sort}`,{params:{category:category, gender:gender,manufacturer_brand:manufacturer_brand,color:color}}
     )
     .then((res) =>
       dispatch({ type: App_ActionType.GET_PRODUCT_SUCCESS, payload: res.data })
@@ -66,7 +66,7 @@ export const getSingleProduct = (load: IsingleProduct) => {
   dispatch({ type: App_ActionType.LOADING });
   return axios
     .get(
-      `https://smiling-jade-fly.cyclic.app/allproducts/singleProduct?_id=${_id}`
+      `${BASE_URL}/allproducts/singleProduct?_id=${_id}`
     )
     .then((res) =>
       dispatch({
@@ -92,7 +92,7 @@ export const postCartProduct = (payload: IpostCartData) => {
   };
   dispatch({ type: App_ActionType.LOADING });
   return axios
-    .post("https://smiling-jade-fly.cyclic.app/addtocart/create", PCdata, {
+    .post(`${BASE_URL}/addtocart/create`, PCdata, {
       headers,
     })
     .then((res) => dispatch({ type: App_ActionType.POST_CART_SUCCESS }))
@@ -112,7 +112,7 @@ export const getCartProduct = (payload: IgetCartdata) => {
   };
   dispatch({ type: App_ActionType.LOADING });
   return axios
-    .get("https://smiling-jade-fly.cyclic.app/addtocart", { headers })
+    .get(`${BASE_URL}/addtocart`, { headers })
     .then((res) =>
       dispatch({ type: App_ActionType.GET_CART_SUCCESS, payload: res.data })
     )
@@ -133,7 +133,7 @@ export const DeleteCartProduct = (payload: Ideletecartdata) => {
   };
   dispatch({ type: App_ActionType.LOADING });
   return axios
-    .delete(`https://smiling-jade-fly.cyclic.app/addtocart/${_id}`, { headers })
+    .delete(`${BASE_URL}/addtocart/${_id}`, { headers })
     .then((res) => dispatch({ type: App_ActionType.DELETE_CART_SUCCESS }))
     .catch((err) => dispatch({ type: App_ActionType.FAILURE }));
 };
@@ -154,7 +154,7 @@ export const postWishlistProduct = (payload: IpostwishlistData) => {
   };
   dispatch({ type: App_ActionType.LOADING });
   return axios
-    .post("https://smiling-jade-fly.cyclic.app/wishlist/create", PCdata, {
+    .post(`${BASE_URL}/wishlist/create`, PCdata, {
       headers,
     })
     .then((res) => dispatch({ type: App_ActionType.POST_WISHLIST_SUCCESS }))
@@ -174,7 +174,7 @@ export const getWishlistProduct = (payload: Igetwishlistdata) => {
   };
   dispatch({ type: App_ActionType.LOADING });
   return axios
-    .get("https://smiling-jade-fly.cyclic.app/wishlist", { headers })
+    .get(`${BASE_URL}/wishlist`, { headers })
     .then((res) =>
       dispatch({ type: App_ActionType.GET_WISHLIST_SUCCESS, payload: res.data })
     )
@@ -194,7 +194,7 @@ export const DeleteWishlistProduct = (payload: Ideletewishlistdata) => {
   };
   dispatch({ type: App_ActionType.LOADING });
   return axios
-    .delete(`https://smiling-jade-fly.cyclic.app/wishlist/${_id}`, { headers })
+    .delete(`${BASE_URL}/wishlist/${_id}`, { headers })
     .then((res) => dispatch({ type: App_ActionType.DELETE_WISHLIST_SUCCESS }))
     .catch((err) => dispatch({ type: App_ActionType.FAILURE }));
 };
@@ -213,7 +213,7 @@ export const postAddressData = (payload: Iaddressdatasend) => {
   };
   dispatch({ type: App_ActionType.LOADING });
   return axios
-    .post("https://smiling-jade-fly.cyclic.app/address/create", addData, {
+    .post(`${BASE_URL}/address/create`, addData, {
       headers,
     })
     .then((res) => dispatch({ type: App_ActionType.POST_ADDRESS_SUCCESS }))
@@ -232,7 +232,7 @@ export const getAddressData = (payload: Igetaddressdata) => {
   };
   dispatch({ type: App_ActionType.LOADING });
   return axios
-    .get("https://smiling-jade-fly.cyclic.app/address/", { headers })
+    .get(`${BASE_URL}/address/`, { headers })
     .then((res) => dispatch({ type: App_ActionType.GET_ADDRESS_SUCCESS, payload: res.data })
     )
     .catch((err) => dispatch({ type: App_ActionType.FAILURE }));
@@ -252,7 +252,7 @@ export const DeleteAddressData = (payload: Ideleteaddressdata) => {
   };
   dispatch({ type: App_ActionType.LOADING });
   return axios
-    .delete(`https://smiling-jade-fly.cyclic.app/address/${_id}`, { headers })
+    .delete(`${BASE_URL}/address/${_id}`, { headers })
     .then((res) => dispatch({ type: App_ActionType.DELETE_ADDRESS_SUCCESS }))
     .catch((err) => dispatch({ type: App_ActionType.FAILURE }));
 };

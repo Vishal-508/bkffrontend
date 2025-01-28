@@ -2,7 +2,7 @@ import axios from "axios"
 import { Dispatch } from "redux"
 import { AuthActions } from "./action"
 import { Auth_Action_Type } from "./action_types"
-
+import BASE_URL from "../../Utils/domain";
 interface IloginProps{
     email:string,
     password:string,
@@ -29,7 +29,7 @@ export const userLogin=(payload:IloginProps)=>{
     password:password
     }
         dispatch({type:Auth_Action_Type.LOADING})
-        return axios.post("https://smiling-jade-fly.cyclic.app/user/login",post).then((res)=>dispatch({type:Auth_Action_Type.USER_LOGIN_SUCCESS, payload:res.data })).catch((err)=>dispatch({type:Auth_Action_Type.FAILURE}))    
+        return axios.post(`${BASE_URL}/user/login`,post).then((res)=>dispatch({type:Auth_Action_Type.USER_LOGIN_SUCCESS, payload:res.data })).catch((err)=>dispatch({type:Auth_Action_Type.FAILURE}))    
 }
 
 interface IpostSignup{
@@ -44,7 +44,7 @@ export const userSignup=(payload:IsignupProps)=>{
     password:password
     }
         dispatch({type:Auth_Action_Type.LOADING})
-        return axios.post("https://smiling-jade-fly.cyclic.app/user/signup",post).then((res)=>dispatch({type:Auth_Action_Type.USER_LOGIN_SUCCESS, payload:res.data })).catch((err)=>dispatch({type:Auth_Action_Type.FAILURE}))
+        return axios.post(`${BASE_URL}/user/signup`,post).then((res)=>dispatch({type:Auth_Action_Type.USER_LOGIN_SUCCESS, payload:res.data })).catch((err)=>dispatch({type:Auth_Action_Type.FAILURE}))
 }
 
 
